@@ -24,6 +24,7 @@ import {
   FormMessage,
 } from "./ui/form";
 import { Eye, EyeOff } from "lucide-react";
+import { asyncRegisterUser } from "@/states/authUser/action";
 
 export default function RegisterForm() {
   const { toast } = useToast();
@@ -43,11 +44,20 @@ export default function RegisterForm() {
   });
 
   function handleSubmit(data: z.infer<typeof registerSchema>) {
-    console.log(data);
+    dispatch(
+      asyncRegisterUser(
+        data.fullname,
+        data.username,
+        data.email,
+        data.password,
+        toast,
+        navigate
+      )
+    );
   }
 
   return (
-    <Card className="mx-auto max-w-sm">
+    <Card className="mx-auto max-w-4xl">
       <CardHeader>
         <CardTitle className="text-xl">Sign Up</CardTitle>
         <CardDescription>
@@ -143,7 +153,7 @@ export default function RegisterForm() {
               )}
             />
             <Button type="submit" className="w-full">
-              Login
+              Register
             </Button>
           </form>
         </Form>

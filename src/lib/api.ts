@@ -9,6 +9,7 @@ import {
   GetTodoListResponse,
   GetTodoResponse,
   LoginResponse,
+  RegisterResponse,
   UpdateReminderResponse,
   UpdateTodoResponse,
 } from "@/types/response";
@@ -70,6 +71,26 @@ const auth = (() => {
     localStorageFunctions.setToken(token);
   }
 
+  async function register(
+    fullname: string,
+    username: string,
+    email: string,
+    password: string
+  ) {
+    const response = await axios.post(`${baseUrl}/register`, {
+      fullname,
+      username,
+      email,
+      password,
+    });
+
+    const { meta } = response.data as RegisterResponse;
+
+    if (meta.status !== 201 || meta.message !== "Success") {
+      throw new Error(meta.message);
+    }
+  }
+
   async function logout() {
     localStorageFunctions.removeToken();
   }
@@ -90,6 +111,7 @@ const auth = (() => {
 
   return {
     login,
+    register,
     logout,
     getMe,
   };
@@ -121,7 +143,7 @@ const todos = (() => {
 
     const { meta } = response.data as CreateTodoResponse;
 
-    if (meta.status !== 200 || meta.message !== "Success") {
+    if (meta.status !== 201 || meta.message !== "Success") {
       throw new Error(meta.message);
     }
 
@@ -222,7 +244,7 @@ const reminders = (() => {
 
     const { meta } = response.data as CreateReminderResponse;
 
-    if (meta.status !== 200 || meta.message !== "Success") {
+    if (meta.status !== 201 || meta.message !== "Success") {
       throw new Error(meta.message);
     }
 
