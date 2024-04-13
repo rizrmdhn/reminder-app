@@ -169,7 +169,7 @@ export default function MainLayout({
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Avatar className="ml-auto hover:cursor-pointer">
-                  <AvatarImage src={authUser.data?.fullname} />
+                  <AvatarImage src={authUser.data?.avatar_url} />
                   <AvatarFallback>
                     <span>
                       {authUser.data?.fullname.charAt(0).toLocaleUpperCase()}
@@ -180,8 +180,9 @@ export default function MainLayout({
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Settings</DropdownMenuItem>
-                <DropdownMenuItem>Support</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => navigate("/settings")}>
+                  Settings
+                </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   onClick={() => dispatch(asyncUnsetAuthUser(navigate))}
