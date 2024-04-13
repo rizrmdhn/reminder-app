@@ -27,4 +27,5 @@ export type TLocaleString = {
   txtLanguageDesc: string;
   txtDarkMode: string;
   txtDarkModeDesc: string;
+  txtMyAccount: string;
 };

@@ -25,6 +25,7 @@ const localeData: TLocale = {
     txtLanguageDesc: "Pilih bahasa yang diinginkan",
     txtDarkMode: "Mode Gelap",
     txtDarkModeDesc: "Aktifkan mode gelap untuk pengalaman yang lebih baik",
+    txtMyAccount: "Akun Saya",
   },
   en: {
     txtLogin: "Login",
@@ -50,6 +51,7 @@ const localeData: TLocale = {
     txtLanguageDesc: "Choose your preferred language",
     txtDarkMode: "Dark Mode",
     txtDarkModeDesc: "Enable dark mode for better experience",
+    txtMyAccount: "My Account",
   },
 };
 

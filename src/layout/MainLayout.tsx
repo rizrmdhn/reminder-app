@@ -27,6 +27,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { asyncUnsetAuthUser } from "@/states/authUser/action";
+import useLocale from "@/hooks/useLocale";
 
 export default function MainLayout({
   children,
@@ -34,6 +35,8 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   const authUser = useAppSelector((state) => state.authUser);
+
+  const { txtMyAccount, txtLogout, txtSettings } = useLocale();
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -108,10 +111,10 @@ export default function MainLayout({
                   className={isActiveDesktop(location.pathname === "/settings")}
                 >
                   <Settings className="h-5 w-5" />
-                  <span className="sr-only">Settings</span>
+                  <span className="sr-only">{txtSettings}</span>
                 </a>
               </TooltipTrigger>
-              <TooltipContent side="right">Settings</TooltipContent>
+              <TooltipContent side="right">{txtSettings}</TooltipContent>
             </Tooltip>
           </nav>
         </aside>
@@ -161,7 +164,7 @@ export default function MainLayout({
                     className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                   >
                     <Settings className="h-5 w-5" />
-                    Settings
+                    {txtSettings}
                   </a>
                 </nav>
               </SheetContent>
@@ -178,16 +181,16 @@ export default function MainLayout({
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuLabel>{txtMyAccount}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => navigate("/settings")}>
-                  Settings
+                  {txtSettings}
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   onClick={() => dispatch(asyncUnsetAuthUser(navigate))}
                 >
-                  Logout
+                  {txtLogout}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
