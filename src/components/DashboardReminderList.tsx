@@ -16,6 +16,7 @@ import {
 } from "@/states/reminder/action";
 import Skeleton from "react-loading-skeleton";
 import AddNewReminderButton from "./AddNewReminderButton";
+import useLocale from "@/hooks/useLocale";
 
 type DashboardReminderListProps = {
   needAddReminder?: boolean;
@@ -25,6 +26,13 @@ export default function DashboardReminderList({
   needAddReminder = false,
 }: DashboardReminderListProps) {
   const reminders = useAppSelector((state) => state.reminder);
+
+  const {
+    txtReminderList,
+    txtTodayReminder,
+    txtNoReminder,
+    txtSomethingWentWrong,
+  } = useLocale();
 
   const { toast } = useToast();
   const dispatch = useAppDispatch();
@@ -41,19 +49,11 @@ export default function DashboardReminderList({
     }
 
     if (reminders.status === "Error") {
-      return (
-        <div className="p-6 text-red-500">
-          Something went wrong. Please try again later.
-        </div>
-      );
+      return <p className="p-6 text-red-500">{txtSomethingWentWrong}</p>;
     }
 
     if (reminders.data.length === 0) {
-      return (
-        <p className="p-6 text-muted-foreground">
-          No reminders found. Create a new one?
-        </p>
-      );
+      return <p className="p-6 text-muted-foreground">{txtNoReminder}</p>;
     }
 
     return reminders.data.map((reminder) => (
@@ -74,8 +74,8 @@ export default function DashboardReminderList({
   return (
     <Card>
       <CardHeader className="pb-0">
-        <CardTitle>Reminders</CardTitle>
-        <CardDescription>Upcoming events</CardDescription>
+        <CardTitle>{txtReminderList}</CardTitle>
+        <CardDescription>{txtTodayReminder}</CardDescription>
       </CardHeader>
       <CardContent className="p-0">
         <div className="divide-y">{renderReminders()}</div>

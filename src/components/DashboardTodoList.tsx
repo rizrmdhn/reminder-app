@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import { asyncDeleteTodo, asyncGetTodos } from "@/states/todos/action";
 import Skeleton from "react-loading-skeleton";
 import AddNewTodoButton from "./AddNewTodoButton";
+import useLocale from "@/hooks/useLocale";
 
 type DashboardTodoListProps = {
   needAddTodo?: boolean;
@@ -22,6 +23,9 @@ export default function DashboardTodoList({
   needAddTodo = false,
 }: DashboardTodoListProps) {
   const todos = useAppSelector((state) => state.todos);
+
+  const { txtTaskList, txtTodayTask, txtNoTask, txtSomethingWentWrong } =
+    useLocale();
 
   const { toast } = useToast();
   const dispatch = useAppDispatch();
@@ -38,19 +42,11 @@ export default function DashboardTodoList({
     }
 
     if (todos.status === "Error") {
-      return (
-        <div className="p-6 text-red-500">
-          Something went wrong. Please try again later.
-        </div>
-      );
+      return <p className="p-6 text-red-500">{txtSomethingWentWrong}</p>;
     }
 
     if (todos.data.length === 0) {
-      return (
-        <p className="p-6 text-muted-foreground">
-          No todos found. Create a new one?
-        </p>
-      );
+      return <p className="p-6 text-muted-foreground">{txtNoTask}</p>;
     } else {
       return todos.data.map((todo) => (
         <TodoItem
@@ -68,8 +64,8 @@ export default function DashboardTodoList({
   return (
     <Card>
       <CardHeader className="pb-0">
-        <CardTitle>Todo List</CardTitle>
-        <CardDescription>Today's tasks</CardDescription>
+        <CardTitle>{txtTaskList}</CardTitle>
+        <CardDescription>{txtTodayTask}</CardDescription>
       </CardHeader>
       <CardContent className="p-0">
         <div className="divide-y">{renderTodos()}</div>

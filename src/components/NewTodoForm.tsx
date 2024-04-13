@@ -15,8 +15,17 @@ import { Button } from "./ui/button";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { asyncCreateTodo } from "@/states/todos/action";
 import { useToast } from "./ui/use-toast";
+import useLocale from "@/hooks/useLocale";
 
 export default function NewTodoForm() {
+  const {
+    txtTaskTitle,
+    txtTaskTitlePlaceholder,
+    txtTaskDescription,
+    txtTaskDescriptionPlaceholder,
+    txtCreateTodo,
+  } = useLocale();
+
   const { toast } = useToast();
   const dispatch = useAppDispatch();
 
@@ -41,11 +50,11 @@ export default function NewTodoForm() {
             name="title"
             render={({ field }) => (
               <FormItem className="space-y-1">
-                <FormLabel className="ml-1 font-bold">Title</FormLabel>
+                <FormLabel className="ml-1 font-bold">{txtTaskTitle}</FormLabel>
                 <FormControl>
                   <Input
                     type="title"
-                    placeholder="Enter your title here"
+                    placeholder={txtTaskTitlePlaceholder}
                     {...field}
                   />
                 </FormControl>
@@ -58,11 +67,13 @@ export default function NewTodoForm() {
             name="description"
             render={({ field }) => (
               <FormItem className="space-y-1">
-                <FormLabel className="ml-1 font-bold">Description</FormLabel>
+                <FormLabel className="ml-1 font-bold">
+                  {txtTaskDescription}
+                </FormLabel>
                 <FormControl className="relative">
                   <div>
                     <Input
-                      placeholder="Enter your description here"
+                      placeholder={txtTaskDescriptionPlaceholder}
                       type="text"
                       {...field}
                     />
@@ -73,7 +84,7 @@ export default function NewTodoForm() {
             )}
           />
           <Button type="submit" className="w-full">
-            Create new task
+            {txtCreateTodo}
           </Button>
         </form>
       </Form>

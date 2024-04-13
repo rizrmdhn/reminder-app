@@ -16,7 +16,7 @@ export function setLocale(locale: string): ActionCreatorSinglePayload<string> {
 function asyncGetLocalLocale() {
   return async (dispatch: AppDispatch) => {
     const localLocale = localStorageFunctions.getLocale();
-    const locale = localLocale || "en";
+    const locale = localLocale ? localLocale : "en";
 
     dispatch(setLocale(locale));
   };

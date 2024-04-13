@@ -4,6 +4,7 @@ import { asyncSetIsPreload } from "./states/isPreload/action";
 import Routes from "./routes";
 import { Toaster } from "./components/ui/toaster";
 import { asyncGetLocalTheme } from "./states/theme/action";
+import { asyncGetLocalLocale } from "./states/locale/action";
 
 function App() {
   const isPreload = useAppSelector((state) => state.isPreload);
@@ -14,8 +15,7 @@ function App() {
   useEffect(() => {
     dispatch(asyncSetIsPreload());
     dispatch(asyncGetLocalTheme());
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    dispatch(asyncGetLocalLocale());
   }, [dispatch]);
 
   if (isPreload) {

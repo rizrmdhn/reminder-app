@@ -36,7 +36,14 @@ export default function MainLayout({
 }) {
   const authUser = useAppSelector((state) => state.authUser);
 
-  const { txtMyAccount, txtLogout, txtSettings } = useLocale();
+  const {
+    txtMyAccount,
+    txtLogout,
+    txtDashboard,
+    txtTodo,
+    txtReminder,
+    txtSettings,
+  } = useLocale();
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -73,10 +80,10 @@ export default function MainLayout({
                   className={isActiveDesktop(location.pathname === "/")}
                 >
                   <Home className="h-5 w-5" />
-                  <span className="sr-only">Dashboard</span>
+                  <span className="sr-only">{txtDashboard}</span>
                 </a>
               </TooltipTrigger>
-              <TooltipContent side="right">Dashboard</TooltipContent>
+              <TooltipContent side="right">{txtDashboard}</TooltipContent>
             </Tooltip>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -85,10 +92,10 @@ export default function MainLayout({
                   className={isActiveDesktop(location.pathname === "/todo")}
                 >
                   <ListTodo className="h-5 w-5" />
-                  <span className="sr-only">Todo</span>
+                  <span className="sr-only">{txtTodo}</span>
                 </a>
               </TooltipTrigger>
-              <TooltipContent side="right">Todo</TooltipContent>
+              <TooltipContent side="right">{txtTodo}</TooltipContent>
             </Tooltip>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -97,10 +104,10 @@ export default function MainLayout({
                   className={isActiveDesktop(location.pathname === "/reminder")}
                 >
                   <Bell className="h-5 w-5" />
-                  <span className="sr-only">Reminder</span>
+                  <span className="sr-only">{txtReminder}</span>
                 </a>
               </TooltipTrigger>
-              <TooltipContent side="right">Reminder</TooltipContent>
+              <TooltipContent side="right">{txtReminder}</TooltipContent>
             </Tooltip>
           </nav>
           <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
@@ -141,14 +148,14 @@ export default function MainLayout({
                     className={isActiveMobile(location.pathname === "/")}
                   >
                     <Home className="h-5 w-5" />
-                    Dashboard
+                    {txtDashboard}
                   </a>
                   <a
                     onClick={() => navigate("/todo")}
                     className={isActiveMobile(location.pathname === "/todo")}
                   >
                     <ListTodo className="h-5 w-5" />
-                    Todo
+                    {txtTodo}
                   </a>
                   <a
                     onClick={() => navigate("/reminder")}
@@ -157,7 +164,7 @@ export default function MainLayout({
                     )}
                   >
                     <Bell className="h-5 w-5" />
-                    Reminder
+                    {txtReminder}
                   </a>
                   <a
                     onClick={() => navigate("/settings")}

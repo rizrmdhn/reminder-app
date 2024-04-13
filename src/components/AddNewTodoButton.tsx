@@ -12,6 +12,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { asyncSetIsAddNewTodo } from "@/states/isAddNewTodo/action";
 import { cn } from "@/lib/utils";
 import { CirclePlus } from "lucide-react";
+import useLocale from "@/hooks/useLocale";
 
 type AddNewTodoButtonProps = {
   className?: string;
@@ -19,6 +20,8 @@ type AddNewTodoButtonProps = {
 
 export default function AddNewTodoButton({ className }: AddNewTodoButtonProps) {
   const isAddNewTodo = useAppSelector((state) => state.isAddNewTodo);
+
+  const { txtAddNewTodo, txtCreateNewTodo, txtCreateNewTodoDesc } = useLocale();
 
   const dispatch = useAppDispatch();
 
@@ -38,16 +41,13 @@ export default function AddNewTodoButton({ className }: AddNewTodoButtonProps) {
           onClick={() => dispatch(asyncSetIsAddNewTodo(true))}
         >
           <CirclePlus className="mr-2 h-4 w-4" />
-          Add new task
+          {txtAddNewTodo}
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create a new todo task</DialogTitle>
-          <DialogDescription>
-            Here you can create a new task to be done. You can add a title and
-            description to it.
-          </DialogDescription>
+          <DialogTitle>{txtCreateNewTodo}</DialogTitle>
+          <DialogDescription>{txtCreateNewTodoDesc}</DialogDescription>
           <NewTodoForm />
         </DialogHeader>
       </DialogContent>

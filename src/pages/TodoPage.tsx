@@ -7,12 +7,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import useLocale from "@/hooks/useLocale";
 import { useAppSelector } from "@/hooks/useRedux";
 import MainLayout from "@/layout/MainLayout";
 import Skeleton from "react-loading-skeleton";
 
 export default function TodoPage() {
   const authUser = useAppSelector((state) => state.authUser);
+
+  const { txtWelcomeBack, txtWelcomeTodo } = useLocale();
 
   return (
     <MainLayout>
@@ -24,13 +27,10 @@ export default function TodoPage() {
               {authUser.status === "Loading" ? (
                 <Skeleton width={200} />
               ) : (
-                `Welcome back, ${authUser.data?.fullname}`
+                `${txtWelcomeBack} ${authUser.data!.fullname}!`
               )}
             </CardTitle>
-            <CardDescription>
-              Welcome to your Todo list. In this page you can see your most
-              recent created todos and create new ones.
-            </CardDescription>
+            <CardDescription>{txtWelcomeTodo}</CardDescription>
           </CardHeader>
           <CardContent className="flex items-center justify-center">
             <div className="w-full">

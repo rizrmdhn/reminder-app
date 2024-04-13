@@ -1,12 +1,21 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import Skeleton from "react-loading-skeleton"
-import MainLayout from "@/layout/MainLayout"
-import { useAppSelector } from "@/hooks/useRedux"
-import DashboardTodoList from "@/components/DashboardTodoList"
-import DashboardReminderList from "@/components/DashboardReminderList"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import Skeleton from "react-loading-skeleton";
+import MainLayout from "@/layout/MainLayout";
+import { useAppSelector } from "@/hooks/useRedux";
+import DashboardTodoList from "@/components/DashboardTodoList";
+import DashboardReminderList from "@/components/DashboardReminderList";
+import useLocale from "@/hooks/useLocale";
 
 export default function HomePage() {
-  const authUser = useAppSelector((state) => state.authUser)
+  const authUser = useAppSelector((state) => state.authUser);
+
+  const { txtWelcomeBack, txtWelcomeBackDashboards } = useLocale();
 
   return (
     <MainLayout>
@@ -14,11 +23,13 @@ export default function HomePage() {
         <Card x-chunk="dashboard-06-chunk-0">
           <CardHeader>
             <CardTitle>
-              {authUser.status === "Loading" ? <Skeleton width={200} /> : `Welcome back, ${authUser.data?.fullname}`}
+              {authUser.status === "Loading" ? (
+                <Skeleton width={200} />
+              ) : (
+                `${txtWelcomeBack} ${authUser.data!.fullname}!`
+              )}
             </CardTitle>
-            <CardDescription>
-              Welcome back to your dashboard. Here's a quick list of your most recent created todos and reminders.
-            </CardDescription>
+            <CardDescription>{txtWelcomeBackDashboards}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid gap-6 md:grid-cols-2">
@@ -29,5 +40,5 @@ export default function HomePage() {
         </Card>
       </main>
     </MainLayout>
-  )
+  );
 }

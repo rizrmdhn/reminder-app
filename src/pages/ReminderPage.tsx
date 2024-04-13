@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { toast } from "@/components/ui/use-toast";
+import useLocale from "@/hooks/useLocale";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import MainLayout from "@/layout/MainLayout";
 import { asyncGetTodos } from "@/states/todos/action";
@@ -16,6 +17,8 @@ import Skeleton from "react-loading-skeleton";
 
 export default function ReminderPage() {
   const authUser = useAppSelector((state) => state.authUser);
+
+  const { txtWelcomeBack, txtWelcomeReminder } = useLocale();
 
   const dispatch = useAppDispatch();
 
@@ -33,13 +36,10 @@ export default function ReminderPage() {
               {authUser.status === "Loading" ? (
                 <Skeleton width={200} />
               ) : (
-                `Welcome back, ${authUser.data?.fullname}`
+                `${txtWelcomeBack} ${authUser.data!.fullname}!`
               )}
             </CardTitle>
-            <CardDescription>
-              Welcome to your Reminder list. In this page you can see your most
-              recent created reminders and create new ones.
-            </CardDescription>
+            <CardDescription>{txtWelcomeReminder}</CardDescription>
           </CardHeader>
           <CardContent className="flex items-center justify-center">
             <div className="w-full">

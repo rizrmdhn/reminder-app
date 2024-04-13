@@ -34,9 +34,23 @@ import { CalendarIcon } from "lucide-react";
 import { Calendar } from "./ui/calendar";
 import moment from "moment";
 import "moment/locale/id";
+import useLocale from "@/hooks/useLocale";
 
 export default function NewReminderForm() {
   const todo = useAppSelector((state) => state.todos);
+
+  const {
+    txtReminderTodo,
+    txtReminderTodoDesc,
+    txtReminderTodoPlaceholder,
+    txtReminderTitle,
+    txtReminderTitlePlaceholder,
+    txtReminderDescription,
+    txtReminderDescriptionPlaceholder,
+    txtReminderDate,
+    txtReminderDateDesc,
+    txtCreateReminder,
+  } = useLocale();
 
   const { toast } = useToast();
   const dispatch = useAppDispatch();
@@ -72,14 +86,16 @@ export default function NewReminderForm() {
             name="idTodo"
             render={({ field }) => (
               <FormItem className="space-y-1">
-                <FormLabel className="ml-1 font-bold">Todo</FormLabel>
+                <FormLabel className="ml-1 font-bold">
+                  {txtReminderTodo}
+                </FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select your todo" />
+                      <SelectValue placeholder={txtReminderTodoPlaceholder} />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -100,9 +116,7 @@ export default function NewReminderForm() {
                     )}
                   </SelectContent>
                 </Select>
-                <FormDescription>
-                  Select your todo to create a new reminder
-                </FormDescription>
+                <FormDescription>{txtReminderTodoDesc}</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -112,11 +126,13 @@ export default function NewReminderForm() {
             name="title"
             render={({ field }) => (
               <FormItem className="space-y-1">
-                <FormLabel className="ml-1 font-bold">Title</FormLabel>
+                <FormLabel className="ml-1 font-bold">
+                  {txtReminderTitle}
+                </FormLabel>
                 <FormControl>
                   <Input
                     type="title"
-                    placeholder="Enter your title here"
+                    placeholder={txtReminderTitlePlaceholder}
                     {...field}
                   />
                 </FormControl>
@@ -129,11 +145,13 @@ export default function NewReminderForm() {
             name="description"
             render={({ field }) => (
               <FormItem className="space-y-1">
-                <FormLabel className="ml-1 font-bold">Description</FormLabel>
+                <FormLabel className="ml-1 font-bold">
+                  {txtReminderDescription}
+                </FormLabel>
                 <FormControl className="relative">
                   <div>
                     <Input
-                      placeholder="Enter your description here"
+                      placeholder={txtReminderDescriptionPlaceholder}
                       type="text"
                       {...field}
                     />
@@ -148,7 +166,7 @@ export default function NewReminderForm() {
             name="timeReminder"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="pr-4">Date</FormLabel>
+                <FormLabel className="pr-4">{txtReminderDate}</FormLabel>
                 <Popover>
                   <PopoverTrigger asChild>
                     <FormControl>
@@ -200,14 +218,12 @@ export default function NewReminderForm() {
                   </PopoverContent>
                 </Popover>
                 <FormMessage />
-                <FormDescription>
-                  This is the date & time the assessment finished.
-                </FormDescription>
+                <FormDescription>{txtReminderDateDesc}</FormDescription>
               </FormItem>
             )}
           />
           <Button type="submit" className="w-full">
-            Create new task
+            {txtCreateReminder}
           </Button>
         </form>
       </Form>
