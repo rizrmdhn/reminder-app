@@ -82,9 +82,11 @@ function asyncSetAuthUser(email: string, password: string, toast: TToast) {
   };
 }
 
-function asyncUnsetAuthUser() {
+function asyncUnsetAuthUser(navigate: NavigateFunction) {
   return async (dispatch: AppDispatch) => {
+    await auth.logout();
     dispatch(unsetAuthUserActionCreator());
+    navigate("/");
   };
 }
 

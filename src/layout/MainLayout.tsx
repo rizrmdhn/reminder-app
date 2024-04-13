@@ -1,8 +1,20 @@
-import React from "react"
-import { Bell, Home, ListChecks, ListTodo, PanelLeft, Settings } from "lucide-react"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Button } from "@/components/ui/button"
+import React from "react";
+import {
+  Bell,
+  Home,
+  ListChecks,
+  ListTodo,
+  PanelLeft,
+  Settings,
+} from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,27 +22,33 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { useLocation, useNavigate } from "react-router-dom"
-import { useAppSelector } from "@/hooks/useRedux"
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import { asyncUnsetAuthUser } from "@/states/authUser/action";
 
-export default function MainLayout({ children }: { children: React.ReactNode }) {
-  const authUser = useAppSelector((state) => state.authUser)
+export default function MainLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const authUser = useAppSelector((state) => state.authUser);
 
-  const navigate = useNavigate()
-  const location = useLocation()
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   function isActiveDesktop(bool: boolean) {
     return bool
       ? "flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-      : "flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+      : "flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8";
   }
 
   function isActiveMobile(bool: boolean) {
     return bool
       ? "flex items-center gap-4 px-2.5 text-foreground"
-      : "flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+      : "flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground";
   }
 
   return (
@@ -47,7 +65,10 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             </a>
             <Tooltip>
               <TooltipTrigger asChild>
-                <a onClick={() => navigate("/")} className={isActiveDesktop(location.pathname === "/")}>
+                <a
+                  onClick={() => navigate("/")}
+                  className={isActiveDesktop(location.pathname === "/")}
+                >
                   <Home className="h-5 w-5" />
                   <span className="sr-only">Dashboard</span>
                 </a>
@@ -56,7 +77,10 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             </Tooltip>
             <Tooltip>
               <TooltipTrigger asChild>
-                <a onClick={() => navigate("/todo")} className={isActiveDesktop(location.pathname === "/todo")}>
+                <a
+                  onClick={() => navigate("/todo")}
+                  className={isActiveDesktop(location.pathname === "/todo")}
+                >
                   <ListTodo className="h-5 w-5" />
                   <span className="sr-only">Todo</span>
                 </a>
@@ -65,7 +89,10 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             </Tooltip>
             <Tooltip>
               <TooltipTrigger asChild>
-                <a onClick={() => navigate("/reminder")} className={isActiveDesktop(location.pathname === "/reminder")}>
+                <a
+                  onClick={() => navigate("/reminder")}
+                  className={isActiveDesktop(location.pathname === "/reminder")}
+                >
                   <Bell className="h-5 w-5" />
                   <span className="sr-only">Reminder</span>
                 </a>
@@ -76,7 +103,10 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
           <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
             <Tooltip>
               <TooltipTrigger asChild>
-                <a onClick={() => navigate("/settings")} className={isActiveDesktop(location.pathname === "/settings")}>
+                <a
+                  onClick={() => navigate("/settings")}
+                  className={isActiveDesktop(location.pathname === "/settings")}
+                >
                   <Settings className="h-5 w-5" />
                   <span className="sr-only">Settings</span>
                 </a>
@@ -103,17 +133,25 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                     <ListChecks className="h-5 w-5 transition-all group-hover:scale-110" />
                     <span className="sr-only">Reminder App</span>
                   </a>
-                  <a onClick={() => navigate("/")} className={isActiveMobile(location.pathname === "/")}>
+                  <a
+                    onClick={() => navigate("/")}
+                    className={isActiveMobile(location.pathname === "/")}
+                  >
                     <Home className="h-5 w-5" />
                     Dashboard
                   </a>
-                  <a onClick={() => navigate("/todo")} className={isActiveMobile(location.pathname === "/todo")}>
+                  <a
+                    onClick={() => navigate("/todo")}
+                    className={isActiveMobile(location.pathname === "/todo")}
+                  >
                     <ListTodo className="h-5 w-5" />
                     Todo
                   </a>
                   <a
                     onClick={() => navigate("/reminder")}
-                    className={isActiveMobile(location.pathname === "/reminder")}
+                    className={isActiveMobile(
+                      location.pathname === "/reminder",
+                    )}
                   >
                     <Bell className="h-5 w-5" />
                     Reminder
@@ -133,7 +171,9 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                 <Avatar className="ml-auto hover:cursor-pointer">
                   <AvatarImage src={authUser.data?.fullname} />
                   <AvatarFallback>
-                    <span>{authUser.data?.fullname.charAt(0).toLocaleUpperCase()}</span>
+                    <span>
+                      {authUser.data?.fullname.charAt(0).toLocaleUpperCase()}
+                    </span>
                   </AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
@@ -143,7 +183,11 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                 <DropdownMenuItem>Settings</DropdownMenuItem>
                 <DropdownMenuItem>Support</DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Logout</DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => dispatch(asyncUnsetAuthUser(navigate))}
+                >
+                  Logout
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </header>
@@ -151,5 +195,5 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         </div>
       </div>
     </TooltipProvider>
-  )
+  );
 }
