@@ -19,6 +19,12 @@ const localeData: TLocale = {
     txtAlreadyHaveAccount: "Sudah punya akun?",
     txtSignIn: "Masuk",
     txtLogout: "Keluar",
+    txtSettings: "Pengaturan",
+    txtSettingsDesc: "Perbarui preferensi Anda.",
+    txtLanguage: "Bahasa",
+    txtLanguageDesc: "Pilih bahasa yang diinginkan",
+    txtDarkMode: "Mode Gelap",
+    txtDarkModeDesc: "Aktifkan mode gelap untuk pengalaman yang lebih baik",
   },
   en: {
     txtLogin: "Login",
@@ -38,6 +44,12 @@ const localeData: TLocale = {
     txtAlreadyHaveAccount: "Already have an account?",
     txtSignIn: "Sign In",
     txtLogout: "Logout",
+    txtSettings: "Settings",
+    txtSettingsDesc: "Update your preferences.",
+    txtLanguage: "Language",
+    txtLanguageDesc: "Choose your preferred language",
+    txtDarkMode: "Dark Mode",
+    txtDarkModeDesc: "Enable dark mode for better experience",
   },
 };
 

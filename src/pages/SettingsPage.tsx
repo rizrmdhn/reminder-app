@@ -14,6 +14,7 @@ import {
   Select,
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
+import useLocale from "@/hooks/useLocale";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import MainLayout from "@/layout/MainLayout";
 import { asyncSetLocale } from "@/states/locale/action";
@@ -22,6 +23,15 @@ import { asyncSetTheme } from "@/states/theme/action";
 export default function SettingsPage() {
   const locale = useAppSelector((state) => state.locale) as "en" | "id";
   const theme = useAppSelector((state) => state.theme);
+
+  const {
+    txtSettings,
+    txtSettingsDesc,
+    txtLanguage,
+    txtLanguageDesc,
+    txtDarkMode,
+    txtDarkModeDesc,
+  } = useLocale();
 
   const dispatch = useAppDispatch();
 
@@ -35,17 +45,17 @@ export default function SettingsPage() {
         <Card>
           <CardHeader>
             <CardTitle className="text-3xl font-bold tracking-tight">
-              Settings
+              {txtSettings}
             </CardTitle>
             <CardDescription className="text-gray-500 dark:text-gray-400">
-              Update your preferences.
+              {txtSettingsDesc}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="w-full max-w-sm space-y-2">
-              <h2 className="text-lg font-bold">Language</h2>
+              <h2 className="text-lg font-bold">{txtLanguage}</h2>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Choose your preferred language.
+                {txtLanguageDesc}
               </p>
               <Select
                 value={locale === "en" ? "en" : "id"}
@@ -65,11 +75,11 @@ export default function SettingsPage() {
               </Select>
             </div>
             <div className="flex w-full max-w-sm flex-col space-y-2">
-              <h2 className="text-lg font-bold">Dark Mode</h2>
+              <h2 className="text-lg font-bold">{txtDarkMode}</h2>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Enable dark mode for a different look.
+                {txtDarkModeDesc}
               </p>
-              <Label htmlFor="dark-mode">Dark Mode</Label>
+              <Label htmlFor="dark-mode">{txtDarkMode}</Label>
               <Switch
                 className="peer-hidden"
                 id="dark-mode"

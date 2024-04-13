@@ -21,4 +21,10 @@ export type TLocaleString = {
   txtAlreadyHaveAccount: string;
   txtSignIn: string;
   txtLogout: string;
+  txtSettings: string;
+  txtSettingsDesc: string;
+  txtLanguage: string;
+  txtLanguageDesc: string;
+  txtDarkMode: string;
+  txtDarkModeDesc: string;
 };
