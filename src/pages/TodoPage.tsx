@@ -1,3 +1,4 @@
+import AddNewTodoButton from "@/components/AddNewTodoButton";
 import DashboardTodoList from "@/components/DashboardTodoList";
 import {
   Card,
@@ -16,7 +17,8 @@ export default function TodoPage() {
   return (
     <MainLayout>
       <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
-        <Card x-chunk="dashboard-06-chunk-0" className="w-full">
+        <AddNewTodoButton className="ml-auto w-fit" />
+        <Card className="w-full">
           <CardHeader>
             <CardTitle>
               {authUser.status === "Loading" ? (
@@ -32,7 +34,7 @@ export default function TodoPage() {
           </CardHeader>
           <CardContent className="flex items-center justify-center">
             <div className="w-full">
-              <DashboardTodoList needAddTodo />
+              <DashboardTodoList />
             </div>
           </CardContent>
         </Card>

@@ -16,7 +16,6 @@ import {
 } from "@/states/reminder/action";
 import Skeleton from "react-loading-skeleton";
 import AddNewReminderButton from "./AddNewReminderButton";
-import { asyncGetTodos } from "@/states/todos/action";
 
 type DashboardReminderListProps = {
   needAddReminder?: boolean;
@@ -32,7 +31,6 @@ export default function DashboardReminderList({
 
   useEffect(() => {
     dispatch(asyncGetReminders(toast));
-    dispatch(asyncGetTodos(toast));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);

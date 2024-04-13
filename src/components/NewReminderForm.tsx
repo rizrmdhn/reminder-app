@@ -79,13 +79,13 @@ export default function NewReminderForm() {
                 >
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select a verified email to display" />
+                      <SelectValue placeholder="Select your todo" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
                     {todo.data.length === 0 ? (
                       <SelectGroup>
-                        <SelectItem disabled value="">
+                        <SelectItem disabled value="null">
                           No todo found
                         </SelectItem>
                       </SelectGroup>

@@ -10,8 +10,16 @@ import { Button } from "./ui/button";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { asyncSetIsAddNewReminder } from "@/states/isAddNewReminder/action";
 import NewReminderForm from "./NewReminderForm";
+import { cn } from "@/lib/utils";
+import { CirclePlus } from "lucide-react";
 
-export default function AddNewReminderButton() {
+type AddNewReminderButtonProps = {
+  className?: string;
+};
+
+export default function AddNewReminderButton({
+  className,
+}: AddNewReminderButtonProps) {
   const isAddNewReminder = useAppSelector((state) => state.isAddNewReminder);
 
   const dispatch = useAppDispatch();
@@ -28,9 +36,10 @@ export default function AddNewReminderButton() {
       <DialogTrigger asChild>
         <Button
           variant="default"
-          className="w-full"
+          className={cn("w-full", className)}
           onClick={() => dispatch(asyncSetIsAddNewReminder(true))}
         >
+          <CirclePlus className="mr-2 h-4 w-4" />
           Add new reminder
         </Button>
       </DialogTrigger>
