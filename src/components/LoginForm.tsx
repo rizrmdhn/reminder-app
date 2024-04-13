@@ -25,8 +25,20 @@ import { Eye, EyeOff } from "lucide-react";
 import { asyncSetAuthUser } from "@/states/authUser/action";
 import { useToast } from "./ui/use-toast";
 import { useNavigate } from "react-router-dom";
+import useLocale from "@/hooks/useLocale";
 
 export default function LoginForm() {
+  const {
+    txtEmail,
+    txtEmailPlaceholder,
+    txtPassword,
+    txtPasswordPlaceholder,
+    txtLogin,
+    txtLoginDesc,
+    txtDontHaveAccount,
+    txtSignUp,
+  } = useLocale();
+
   const { toast } = useToast();
   const [type, setType] = useState<"text" | "password">("password");
 
@@ -48,10 +60,8 @@ export default function LoginForm() {
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
-        <CardTitle className="text-2xl">Login</CardTitle>
-        <CardDescription>
-          Enter your email below to login to your account
-        </CardDescription>
+        <CardTitle className="text-2xl">{txtLogin}</CardTitle>
+        <CardDescription>{txtLoginDesc}</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -64,11 +74,11 @@ export default function LoginForm() {
               name="email"
               render={({ field }) => (
                 <FormItem className="space-y-1">
-                  <FormLabel className="ml-1 font-bold">Email</FormLabel>
+                  <FormLabel className="ml-1 font-bold">{txtEmail}</FormLabel>
                   <FormControl>
                     <Input
                       type="email"
-                      placeholder="m@example.com"
+                      placeholder={txtEmailPlaceholder}
                       {...field}
                     />
                   </FormControl>
@@ -81,11 +91,13 @@ export default function LoginForm() {
               name="password"
               render={({ field }) => (
                 <FormItem className="space-y-1">
-                  <FormLabel className="ml-1 font-bold">Password</FormLabel>
+                  <FormLabel className="ml-1 font-bold">
+                    {txtPassword}
+                  </FormLabel>
                   <FormControl className="relative">
                     <div>
                       <Input
-                        placeholder="Masukkan Password"
+                        placeholder={txtPasswordPlaceholder}
                         type={type}
                         {...field}
                       />
@@ -95,7 +107,7 @@ export default function LoginForm() {
                         className="absolute right-2 top-0 p-0 hover:bg-transparent"
                         onClick={() => {
                           setType((prev) =>
-                            prev === "password" ? "text" : "password"
+                            prev === "password" ? "text" : "password",
                           );
                         }}
                       >
@@ -113,14 +125,14 @@ export default function LoginForm() {
           </form>
         </Form>
         <div className="mt-4 text-center text-sm">
-          Don&apos;t have an account?{" "}
+          {txtDontHaveAccount}{" "}
           <a
             className="underline hover:cursor-pointer"
             onClick={() => {
               navigate("/register");
             }}
           >
-            Sign up
+            {txtSignUp}
           </a>
         </div>
       </CardContent>

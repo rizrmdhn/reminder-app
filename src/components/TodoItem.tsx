@@ -55,13 +55,13 @@ export default function TodoItem({
         </div>
       </div>
       <div className="flex flex-col items-end gap-4">
-        <Button className="text-white hover:bg-orange-400 dark:text-orange-400 dark:hover:bg-orange-500">
+        <Button className="text-white hover:bg-orange-400 dark:text-orange-400 dark:hover:bg-orange-500 dark:hover:text-white">
           <FileEditIcon className="mr-2 inline h-4 w-4" />
           Edit
         </Button>
         <AlertDialog>
           <AlertDialogTrigger asChild>
-            <Button className="text-white hover:bg-red-400 dark:text-red-400 dark:hover:bg-red-500">
+            <Button className="text-white hover:bg-red-400 dark:text-red-400 dark:hover:bg-red-500 dark:hover:text-white">
               <TrashIcon className="mr-2 inline h-4 w-4" />
               Delete
             </Button>

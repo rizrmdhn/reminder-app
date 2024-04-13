@@ -25,8 +25,24 @@ import {
 } from "./ui/form";
 import { Eye, EyeOff } from "lucide-react";
 import { asyncRegisterUser } from "@/states/authUser/action";
+import useLocale from "@/hooks/useLocale";
 
 export default function RegisterForm() {
+  const {
+    txtEmail,
+    txtEmailPlaceholder,
+    txtPassword,
+    txtPasswordPlaceholder,
+    txtLogin,
+    txtAlreadyHaveAccount,
+    txtSignUp,
+    txtSignUpDesc,
+    txtFullName,
+    txtFullNamePlaceholder,
+    txtUsername,
+    txtUsernamePlaceholder,
+  } = useLocale();
+
   const { toast } = useToast();
   const [type, setType] = useState<"text" | "password">("password");
 
@@ -51,18 +67,16 @@ export default function RegisterForm() {
         data.email,
         data.password,
         toast,
-        navigate
-      )
+        navigate,
+      ),
     );
   }
 
   return (
     <Card className="mx-auto max-w-4xl">
       <CardHeader>
-        <CardTitle className="text-xl">Sign Up</CardTitle>
-        <CardDescription>
-          Enter your information to create an account
-        </CardDescription>
+        <CardTitle className="text-xl">{txtSignUp}</CardTitle>
+        <CardDescription>{txtSignUpDesc}</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -75,11 +89,13 @@ export default function RegisterForm() {
               name="fullname"
               render={({ field }) => (
                 <FormItem className="space-y-1">
-                  <FormLabel className="ml-1 font-bold">Fullname</FormLabel>
+                  <FormLabel className="ml-1 font-bold">
+                    {txtFullName}
+                  </FormLabel>
                   <FormControl>
                     <Input
                       type="fullname"
-                      placeholder="Max Verstappen"
+                      placeholder={txtFullNamePlaceholder}
                       {...field}
                     />
                   </FormControl>
@@ -92,11 +108,13 @@ export default function RegisterForm() {
               name="username"
               render={({ field }) => (
                 <FormItem className="space-y-1">
-                  <FormLabel className="ml-1 font-bold">Username</FormLabel>
+                  <FormLabel className="ml-1 font-bold">
+                    {txtUsername}
+                  </FormLabel>
                   <FormControl>
                     <Input
                       type="username"
-                      placeholder="maxverstappen"
+                      placeholder={txtUsernamePlaceholder}
                       {...field}
                     />
                   </FormControl>
@@ -109,11 +127,11 @@ export default function RegisterForm() {
               name="email"
               render={({ field }) => (
                 <FormItem className="space-y-1">
-                  <FormLabel className="ml-1 font-bold">Email</FormLabel>
+                  <FormLabel className="ml-1 font-bold">{txtEmail}</FormLabel>
                   <FormControl>
                     <Input
                       type="email"
-                      placeholder="m@example.com"
+                      placeholder={txtEmailPlaceholder}
                       {...field}
                     />
                   </FormControl>
@@ -126,11 +144,13 @@ export default function RegisterForm() {
               name="password"
               render={({ field }) => (
                 <FormItem className="space-y-1">
-                  <FormLabel className="ml-1 font-bold">Password</FormLabel>
+                  <FormLabel className="ml-1 font-bold">
+                    {txtPassword}
+                  </FormLabel>
                   <FormControl className="relative">
                     <div>
                       <Input
-                        placeholder="Masukkan Password"
+                        placeholder={txtPasswordPlaceholder}
                         type={type}
                         {...field}
                       />
@@ -140,7 +160,7 @@ export default function RegisterForm() {
                         className="absolute right-2 top-0 p-0 hover:bg-transparent"
                         onClick={() => {
                           setType((prev) =>
-                            prev === "password" ? "text" : "password"
+                            prev === "password" ? "text" : "password",
                           );
                         }}
                       >
@@ -153,17 +173,17 @@ export default function RegisterForm() {
               )}
             />
             <Button type="submit" className="w-full">
-              Register
+              {txtSignUp}
             </Button>
           </form>
         </Form>
         <div className="mt-4 text-center text-sm">
-          Already have an account?{" "}
+          {txtAlreadyHaveAccount}{" "}
           <a
             className="underline hover:cursor-pointer"
             onClick={() => navigate("/")}
           >
-            Sign in
+            {txtLogin}
           </a>
         </div>
       </CardContent>

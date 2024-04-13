@@ -20,6 +20,8 @@ import axios, { AxiosRequestConfig } from "axios";
 const baseUrl = env.VITE_API_URL;
 
 const localStorageKey = "__reminder_app_token__";
+const localStorageKeyTheme = "__reminder_app_theme__";
+const localStorageKeyLocale = "__reminder_app_locale__";
 
 async function fetchWithAuth(url: string, options: AxiosRequestConfig = {}) {
   return axios(url, {
@@ -44,10 +46,30 @@ const localStorageFunctions = (() => {
     localStorage.removeItem(localStorageKey);
   }
 
+  function getTheme() {
+    return localStorage.getItem(localStorageKeyTheme);
+  }
+
+  function setTheme(theme: string) {
+    localStorage.setItem(localStorageKeyTheme, theme);
+  }
+
+  function getLocale() {
+    return localStorage.getItem(localStorageKeyLocale);
+  }
+
+  function setLocale(locale: string) {
+    localStorage.setItem(localStorageKeyLocale, locale);
+  }
+
   return {
     getToken,
     setToken,
     removeToken,
+    getTheme,
+    setTheme,
+    getLocale,
+    setLocale,
   };
 })();
 
@@ -75,7 +97,7 @@ const auth = (() => {
     fullname: string,
     username: string,
     email: string,
-    password: string
+    password: string,
   ) {
     const response = await axios.post(`${baseUrl}/register`, {
       fullname,
@@ -169,7 +191,7 @@ const todos = (() => {
   async function updateTodo(
     id: string,
     title: string,
-    description: string
+    description: string,
   ): Promise<Todo> {
     const response = await fetchWithAuth(`${baseUrl}/todos/${id}`, {
       method: "PUT",
@@ -230,7 +252,7 @@ const reminders = (() => {
     idTodo: string,
     title: string,
     description: string,
-    timeReminder: string
+    timeReminder: string,
   ): Promise<Reminder> {
     const response = await fetchWithAuth(`${baseUrl}/reminders`, {
       method: "POST",
@@ -271,7 +293,7 @@ const reminders = (() => {
     id: string,
     title: string,
     description: string,
-    timeReminder: string
+    timeReminder: string,
   ): Promise<Reminder> {
     const response = await fetchWithAuth(`${baseUrl}/reminders/${id}`, {
       method: "PUT",
@@ -314,4 +336,4 @@ const reminders = (() => {
   };
 })();
 
-export { auth, todos, reminders };
+export { localStorageFunctions, auth, todos, reminders };

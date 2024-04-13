@@ -6,6 +6,8 @@ import isAddNewTodoReducer from "./isAddNewTodo/reducer";
 import todoReducer from "./todos/reducer";
 import reminderReducer from "./reminder/reducer";
 import isAddNewReminderReducer from "./isAddNewReminder/reducer";
+import themeReducer from "./theme/reducer";
+import localeReducer from "./locale/reducer";
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +17,8 @@ export const store = configureStore({
     isAddNewReminder: isAddNewReminderReducer,
     todos: todoReducer,
     reminder: reminderReducer,
+    theme: themeReducer,
+    locale: localeReducer,
   },
 });
 
