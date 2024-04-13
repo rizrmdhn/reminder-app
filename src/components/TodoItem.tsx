@@ -1,6 +1,6 @@
-import { FileEditIcon, TrashIcon } from "lucide-react"
-import { Label } from "./ui/label"
-import { Button } from "./ui/button"
+import { FileEditIcon, TrashIcon } from "lucide-react";
+import { Label } from "./ui/label";
+import { Button } from "./ui/button";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -11,33 +11,46 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
-import moment from "moment"
-import "moment/locale/id"
+} from "@/components/ui/alert-dialog";
+import moment from "moment";
+import "moment/locale/id";
 
 type TodoItemProps = {
-  title: string
-  description: string
-  createdAt: string
-  updatedAt: string
-  onDelete: () => void
-}
+  title: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+  onDelete: () => void;
+};
 
-export default function TodoItem({ title, description, createdAt, updatedAt, onDelete }: TodoItemProps) {
+export default function TodoItem({
+  title,
+  description,
+  createdAt,
+  updatedAt,
+  onDelete,
+}: TodoItemProps) {
   return (
     <div className="mx-3 flex items-center justify-between p-4">
       <div className="flex flex-col items-start gap-4">
         <div className="title-and-description flex flex-col gap-4">
           <div className="truncate font-bold">{title}</div>
-          <div className="text-sm text-gray-500 dark:text-gray-400">{description}</div>
+          <div className="text-sm text-gray-500 dark:text-gray-400">
+            {description}
+          </div>
         </div>
         <div className="flex items-center gap-4">
           <Label className="text-sm">
-            Created at: <span className="font-bold">{moment(createdAt).locale("id").format("dddd, DD MMMM YYYY")}</span>
+            Created at:{" "}
+            <span className="font-bold">
+              {moment(createdAt).locale("id").format("dddd, DD MMMM YYYY")}
+            </span>
           </Label>
           <Label className="text-sm">
             Updated at:
-            <span className="font-bold">{moment(updatedAt).locale("id").format("dddd, DD MMMM YYYY")}</span>
+            <span className="font-bold">
+              {moment(updatedAt).locale("id").format("dddd, DD MMMM YYYY")}
+            </span>
           </Label>
         </div>
       </div>
@@ -57,13 +70,16 @@ export default function TodoItem({ title, description, createdAt, updatedAt, onD
             <AlertDialogHeader>
               <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
               <AlertDialogDescription>
-                This action cannot be undone. This will permanently delete your account and remove your data from our
-                servers.
+                This action cannot be undone. This will permanently delete your
+                account and remove your data from our servers.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction className="bg-red-500 text-white hover:bg-red-600" onClick={() => onDelete()}>
+              <AlertDialogAction
+                className="bg-red-500 text-white hover:bg-red-600"
+                onClick={() => onDelete()}
+              >
                 Continue
               </AlertDialogAction>
             </AlertDialogFooter>
@@ -71,5 +87,5 @@ export default function TodoItem({ title, description, createdAt, updatedAt, onD
         </AlertDialog>
       </div>
     </div>
-  )
+  );
 }

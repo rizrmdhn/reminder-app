@@ -1,4 +1,4 @@
-import DashboardTodoList from "@/components/DashboardTodoList";
+import DashboardReminderList from "@/components/DashboardReminderList";
 import {
   Card,
   CardContent,
@@ -10,7 +10,7 @@ import { useAppSelector } from "@/hooks/useRedux";
 import MainLayout from "@/layout/MainLayout";
 import Skeleton from "react-loading-skeleton";
 
-export default function TodoPage() {
+export default function ReminderPage() {
   const authUser = useAppSelector((state) => state.authUser);
 
   return (
@@ -26,13 +26,13 @@ export default function TodoPage() {
               )}
             </CardTitle>
             <CardDescription>
-              Welcome to your Todo list. In this page you can see your most
-              recent created todos and create new ones.
+              Welcome to your Reminder list. In this page you can see your most
+              recent created reminders and create new ones.
             </CardDescription>
           </CardHeader>
           <CardContent className="flex items-center justify-center">
             <div className="w-full">
-              <DashboardTodoList needAddTodo />
+              <DashboardReminderList needAddReminder />
             </div>
           </CardContent>
         </Card>

@@ -7,7 +7,7 @@ const initialState: TIsPreloadState = null;
 
 function isPreloadReducer(
   state: TIsPreloadState = initialState,
-  action: UnknownAction
+  action: UnknownAction,
 ): TIsPreloadState {
   switch (action.type) {
     case ActionType.SET_IS_PRELOAD:

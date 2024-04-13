@@ -15,7 +15,7 @@ const initialState: TAuthUserState = {
 
 export default function authUserReducer(
   state = initialState,
-  action: UnknownAction
+  action: UnknownAction,
 ): TAuthUserState {
   switch (action.type) {
     case ActionType.SET_AUTH_USER: {

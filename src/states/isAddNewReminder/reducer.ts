@@ -2,16 +2,16 @@ import { ActionCreatorSinglePayload } from "@/types/state";
 import { UnknownAction } from "redux";
 import { ActionType } from "./action";
 
-export type TIsAddNewTodoState = boolean;
+export type TIsAddNewReminderState = boolean;
 
-const initialState: TIsAddNewTodoState = false;
+const initialState: TIsAddNewReminderState = false;
 
-export default function isAddNewTodoReducer(
+export default function isAddNewReminderReducer(
   state = initialState,
   action: UnknownAction,
-): TIsAddNewTodoState {
+): TIsAddNewReminderState {
   switch (action.type) {
-    case ActionType.SET_IS_ADD_NEW_TODO: {
+    case ActionType.SET_IS_ADD_NEW_REMINDER: {
       const { payload } = action as ActionCreatorSinglePayload<boolean>;
       return payload;
     }

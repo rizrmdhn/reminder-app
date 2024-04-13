@@ -1,4 +1,4 @@
-import { z } from "zod"
+import { z } from "zod";
 
 export const createReminderSchema = z.object({
   idTodo: z.string().min(3, {
@@ -10,10 +10,10 @@ export const createReminderSchema = z.object({
   description: z.string().min(3, {
     message: "Description is too short (minimum is 3 characters)",
   }),
-  timeReminder: z.string().min(3, {
-    message: "Time is required",
+  timeReminder: z.date({
+    required_error: "Time is required",
   }),
-})
+});
 
 export const updateReminderSchema = z.object({
   idTodo: z.string().min(3, {
@@ -31,4 +31,4 @@ export const updateReminderSchema = z.object({
       message: "Time is required",
     })
     .optional(),
-})
+});

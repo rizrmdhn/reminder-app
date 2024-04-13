@@ -1,10 +1,10 @@
 export type Reminder = {
-  reminderId: string
-  idTodo: string
-  title: string
-  description: string
-  timeReminder: Date
-  createdBy: string
-  createdAt: string
-  updatedAt: string
-}
+  reminderId: string;
+  idTodo: string;
+  title: string;
+  description: string;
+  timeReminder: string;
+  createdBy: string;
+  createdAt: string;
+  updatedAt: string;
+};
