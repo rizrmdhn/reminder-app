@@ -14,7 +14,7 @@ export enum ActionType {
 
 function receiveAuthUserActionCreator(
   status: ActionCreatorStateStatus,
-  data: User | null
+  data: User | null,
 ): ActionCreator<User | null> {
   return {
     type: ActionType.SET_AUTH_USER,
@@ -94,7 +94,7 @@ function asyncRegisterUser(
   email: string,
   password: string,
   toast: TToast,
-  navigate: NavigateFunction
+  navigate: NavigateFunction,
 ) {
   return async (dispatch: AppDispatch) => {
     dispatch(receiveAuthUserActionCreator("Loading", null));
