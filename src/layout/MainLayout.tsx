@@ -28,6 +28,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { asyncUnsetAuthUser } from "@/states/authUser/action";
 import useLocale from "@/hooks/useLocale";
+import moment from "moment";
 
 export default function MainLayout({
   children,
@@ -35,6 +36,7 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   const authUser = useAppSelector((state) => state.authUser);
+  const reminder = useAppSelector((state) => state.reminder);
 
   const {
     txtMyAccount,
@@ -99,13 +101,34 @@ export default function MainLayout({
             </Tooltip>
             <Tooltip>
               <TooltipTrigger asChild>
-                <a
-                  onClick={() => navigate("/reminder")}
-                  className={isActiveDesktop(location.pathname === "/reminder")}
-                >
-                  <Bell className="h-5 w-5" />
-                  <span className="sr-only">{txtReminder}</span>
-                </a>
+                {reminder.data.length > 0 &&
+                  (reminder.data.some(
+                    (item) =>
+                      moment(item.timeReminder).locale("id").fromNow() ===
+                        "in a few seconds" ||
+                      moment(item.timeReminder).locale("id").fromNow() ===
+                        "in a minute",
+                  ) ? (
+                    <a
+                      onClick={() => navigate("/reminder")}
+                      className={isActiveDesktop(
+                        location.pathname === "/reminder",
+                      )}
+                    >
+                      <Bell className="h-5 w-5 animate-pulse text-red-500" />
+                      <span className="sr-only">{txtReminder}</span>
+                    </a>
+                  ) : (
+                    <a
+                      onClick={() => navigate("/reminder")}
+                      className={isActiveDesktop(
+                        location.pathname === "/reminder",
+                      )}
+                    >
+                      <Bell className="h-5 w-5" />
+                      <span className="sr-only">{txtReminder}</span>
+                    </a>
+                  ))}
               </TooltipTrigger>
               <TooltipContent side="right">{txtReminder}</TooltipContent>
             </Tooltip>

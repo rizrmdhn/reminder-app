@@ -12,6 +12,7 @@ import isEditTodoReducer from "./isEditTodo/reducer";
 import isEditReminderReducer from "./isEditReminder/reducer";
 import detailTodoReducer from "./detailTodo/reducer";
 import detailReminderReducer from "./detailReminder/reducer";
+import showAlertReducer from "./showAlert/reducer";
 
 export const store = configureStore({
   reducer: {
@@ -27,6 +28,7 @@ export const store = configureStore({
     detailReminder: detailReminderReducer,
     theme: themeReducer,
     locale: localeReducer,
+    showAlert: showAlertReducer,
   },
 });
 
