@@ -1,4 +1,4 @@
-import { FileEditIcon, TrashIcon } from "lucide-react";
+import { TrashIcon } from "lucide-react";
 import { Label } from "./ui/label";
 import { Button } from "./ui/button";
 import {
@@ -14,8 +14,10 @@ import {
 } from "@/components/ui/alert-dialog";
 import moment from "moment";
 import "moment/locale/id";
+import EditTodoButton from "./EditTodoButton";
 
 type TodoItemProps = {
+  todoId: string;
   title: string;
   description: string;
   createdAt: string;
@@ -24,6 +26,7 @@ type TodoItemProps = {
 };
 
 export default function TodoItem({
+  todoId,
   title,
   description,
   createdAt,
@@ -43,22 +46,26 @@ export default function TodoItem({
           <Label className="text-sm">
             Created at:{" "}
             <span className="font-bold">
-              {moment(createdAt).locale("id").format("dddd, DD MMMM YYYY")}
+              {moment(createdAt)
+                .locale("id")
+                .format("dddd, DD MMMM YYYY HH:mm")}
             </span>
           </Label>
           <Label className="text-sm">
-            Updated at:
+            Updated at:{" "}
             <span className="font-bold">
-              {moment(updatedAt).locale("id").format("dddd, DD MMMM YYYY")}
+              {moment(updatedAt)
+                .locale("id")
+                .format("dddd, DD MMMM YYYY HH:mm")}
             </span>
           </Label>
         </div>
       </div>
       <div className="flex flex-col items-end gap-4">
-        <Button className="text-white hover:bg-orange-400 dark:text-orange-400 dark:hover:bg-orange-500 dark:hover:text-white">
-          <FileEditIcon className="mr-2 inline h-4 w-4" />
-          Edit
-        </Button>
+        <EditTodoButton
+          className="text-white hover:bg-orange-400 dark:text-orange-400 dark:hover:bg-orange-500 dark:hover:text-white"
+          todoId={todoId}
+        />
         <AlertDialog>
           <AlertDialogTrigger asChild>
             <Button className="text-white hover:bg-red-400 dark:text-red-400 dark:hover:bg-red-500 dark:hover:text-white">

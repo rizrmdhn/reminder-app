@@ -59,6 +59,7 @@ export default function DashboardReminderList({
     return reminders.data.map((reminder) => (
       <ReminderItem
         key={reminder.reminderId}
+        reminderId={reminder.reminderId}
         title={reminder.title}
         description={reminder.description}
         timeReminder={reminder.timeReminder}

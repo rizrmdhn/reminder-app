@@ -68,6 +68,12 @@ const localeData: TLocale = {
     txtReminderDatePlaceholder: "Pilih tanggal pengingat",
     txtReminderTimePlaceholder: "Pilih waktu pengingat",
     txtReminderDateDesc: "Pilih tanggal dan waktu untuk diingatkan",
+    txtEdit: "Edit",
+    txtEditTodo: "Edit Todo",
+    txtEditTodoDesc: "Edit tugas todo Anda",
+    txtEditReminder: "Edit Pengingat",
+    txtEditReminderDesc: "Edit pengingat Anda",
+    txtSaveChanges: "Simpan Perubahan",
   },
   en: {
     txtLogin: "Login",
@@ -136,6 +142,12 @@ const localeData: TLocale = {
     txtReminderDatePlaceholder: "Choose reminder date",
     txtReminderTimePlaceholder: "Choose reminder time",
     txtReminderDateDesc: "Choose the date and time to be reminded",
+    txtEdit: "Edit",
+    txtEditTodo: "Edit Todo",
+    txtEditTodoDesc: "Edit your todo task",
+    txtEditReminder: "Edit Reminder",
+    txtEditReminderDesc: "Edit your reminder",
+    txtSaveChanges: "Save Changes",
   },
 };
 

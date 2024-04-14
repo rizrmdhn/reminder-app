@@ -1,4 +1,4 @@
-import { FileEditIcon, TrashIcon } from "lucide-react";
+import { TrashIcon } from "lucide-react";
 import moment from "moment";
 import "moment/locale/id";
 import { Button } from "./ui/button";
@@ -13,8 +13,10 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "./ui/alert-dialog";
+import EditReminderButton from "./EditReminderButton";
 
 type ReminderItemProps = {
+  reminderId: string;
   title: string;
   description: string;
   timeReminder: string;
@@ -24,6 +26,7 @@ type ReminderItemProps = {
 };
 
 export default function ReminderItem({
+  reminderId,
   title,
   description,
   timeReminder,
@@ -44,10 +47,10 @@ export default function ReminderItem({
       </div>
       <div>
         <div className="flex flex-col items-end gap-4">
-          <Button className="text-white hover:bg-orange-400 dark:text-orange-400 dark:hover:bg-orange-500 dark:hover:text-white">
-            <FileEditIcon className="mr-2 inline h-4 w-4" />
-            Edit
-          </Button>
+          <EditReminderButton
+            reminderId={reminderId}
+            className="text-white hover:bg-orange-400 dark:text-orange-400 dark:hover:bg-orange-500 dark:hover:text-white"
+          />
           <AlertDialog>
             <AlertDialogTrigger asChild>
               <Button className="text-white hover:bg-red-400 dark:text-red-400 dark:hover:bg-red-500 dark:hover:text-white">

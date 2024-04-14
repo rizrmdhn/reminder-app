@@ -51,6 +51,21 @@ export default function todoReducer(
             : state.data,
       };
     }
+    case ActionType.UPDATE_TODO: {
+      const {
+        payload: { data, status },
+      } = action as ActionCreator<Todo | null>;
+      return {
+        ...state,
+        status,
+        data:
+          status === "Success" && state.data
+            ? state.data.map((todo) =>
+                todo.todoId === data?.todoId ? data : todo,
+              )
+            : state.data,
+      };
+    }
     default:
       return state;
   }

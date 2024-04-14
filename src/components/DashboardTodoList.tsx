@@ -51,6 +51,7 @@ export default function DashboardTodoList({
       return todos.data.map((todo) => (
         <TodoItem
           key={todo.todoId}
+          todoId={todo.todoId}
           title={todo.title}
           description={todo.description}
           createdAt={todo.createdAt}

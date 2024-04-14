@@ -65,4 +65,10 @@ export type TLocaleString = {
   txtReminderDatePlaceholder: string;
   txtReminderTimePlaceholder: string;
   txtReminderDateDesc: string;
+  txtEdit: string;
+  txtEditTodo: string;
+  txtEditTodoDesc: string;
+  txtEditReminder: string;
+  txtEditReminderDesc: string;
+  txtSaveChanges: string;
 };

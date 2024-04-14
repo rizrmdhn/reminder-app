@@ -1,6 +1,7 @@
 import { Reminder } from "@/types/reminder";
 import { ActionCreator, StateStatus } from "@/types/state";
 import { UnknownAction } from "redux";
+import { ActionType } from "./action";
 
 export type TReminderState = {
   status: StateStatus;
@@ -17,7 +18,7 @@ export default function reminderReducer(
   action: UnknownAction,
 ): TReminderState {
   switch (action.type) {
-    case "GET_REMINDERS": {
+    case ActionType.GET_REMINDERS: {
       const {
         payload: { data, status },
       } = action as ActionCreator<Reminder[]>;
@@ -27,7 +28,7 @@ export default function reminderReducer(
         data,
       };
     }
-    case "CREATE_REMINDER": {
+    case ActionType.CREATE_REMINDER: {
       const {
         payload: { data, status },
       } = action as ActionCreator<Reminder | null>;
@@ -37,7 +38,7 @@ export default function reminderReducer(
         data: status === "Success" && data ? [...state.data, data] : state.data,
       };
     }
-    case "DELETE_REMINDER": {
+    case ActionType.DELETE_REMINDER: {
       const {
         payload: { data, status },
       } = action as ActionCreator<string>;
@@ -47,6 +48,21 @@ export default function reminderReducer(
         data:
           status === "Success" && state.data
             ? state.data.filter((reminder) => reminder.reminderId !== data)
+            : state.data,
+      };
+    }
+    case ActionType.UPDATE_REMINDER: {
+      const {
+        payload: { data, status },
+      } = action as ActionCreator<Reminder | null>;
+      return {
+        ...state,
+        status,
+        data:
+          status === "Success" && state.data
+            ? state.data.map((reminder) =>
+                reminder.reminderId === data?.reminderId ? data : reminder,
+              )
             : state.data,
       };
     }

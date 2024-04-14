@@ -174,7 +174,7 @@ const todos = (() => {
     return data;
   }
 
-  async function getTodoDetail(id: number): Promise<Todo> {
+  async function getTodoDetail(id: string): Promise<Todo> {
     const response = await fetchWithAuth(`${baseUrl}/todos/${id}`);
 
     const { meta } = response.data as GetTodoResponse;
