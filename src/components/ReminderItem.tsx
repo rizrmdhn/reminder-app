@@ -42,7 +42,22 @@ export default function ReminderItem({
           {description}
         </p>
         <p className="text-sm text-gray-500 dark:text-gray-400">
-          {moment(timeReminder).format("dddd, DD MMMM YYYY HH:mm")}
+          Time reminder:{" "}
+          <span className="font-bold">
+            {moment(timeReminder).locale("id").fromNow() ===
+              "in a few seconds" ||
+            moment(timeReminder).locale("id").fromNow() === "in a minute"
+              ? "Now"
+              : moment(timeReminder).locale("id").fromNow()}
+          </span>
+        </p>
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          Created at:{" "}
+          <span className="font-bold">{moment(createdAt).fromNow()}</span>
+        </p>
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          Updated at:{" "}
+          <span className="font-bold">{moment(updatedAt).fromNow()}</span>
         </p>
       </div>
       <div>

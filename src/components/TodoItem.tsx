@@ -45,19 +45,11 @@ export default function TodoItem({
         <div className="flex items-center gap-4">
           <Label className="text-sm">
             Created at:{" "}
-            <span className="font-bold">
-              {moment(createdAt)
-                .locale("id")
-                .format("dddd, DD MMMM YYYY HH:mm")}
-            </span>
+            <span className="font-bold">{moment(createdAt).fromNow()}</span>
           </Label>
           <Label className="text-sm">
             Updated at:{" "}
-            <span className="font-bold">
-              {moment(updatedAt)
-                .locale("id")
-                .format("dddd, DD MMMM YYYY HH:mm")}
-            </span>
+            <span className="font-bold">{moment(updatedAt).fromNow()}</span>
           </Label>
         </div>
       </div>
